@@ -1,0 +1,93 @@
+{
+  "project": "InfraConsolidation",
+  "phase": "BACKLOG",
+  "priority": "MEDIUM",
+  "last_updated": "2026-06-26",
+  "goals": [
+    {
+      "id": "g0",
+      "title": "Near-term console enhancements (current Hetzner setup)",
+      "status": "NOT_STARTED",
+      "activities": [
+        { "id": "g0a1", "title": "Add vscode:// deep link to Launch Claude Session modal — map project slug to local folder path so clicking opens the right project in VS Code directly", "status": "NOT_STARTED" }
+      ]
+    },
+    {
+      "id": "g1",
+      "title": "Provision Windows Server VPS",
+      "status": "NOT_STARTED",
+      "activities": [
+        { "id": "g1a1", "title": "Choose instance size (CX22 vs CX32) — assess RAM needs for MT5 × 3 + Flask apps", "status": "NOT_STARTED" },
+        { "id": "g1a2", "title": "Provision Hetzner Windows Server VPS", "status": "NOT_STARTED" },
+        { "id": "g1a3", "title": "RDP in, confirm base environment, install Python + pip", "status": "NOT_STARTED" },
+        { "id": "g1a4", "title": "Install cloudflared, configure Cloudflare tunnel replacing PC tunnel", "status": "NOT_STARTED" },
+        { "id": "g1a5", "title": "Set up GitHub CLI + PAT for console and deployments", "status": "NOT_STARTED" }
+      ]
+    },
+    {
+      "id": "g2",
+      "title": "Migrate Projects Console to VPS (GitHub API data source)",
+      "status": "NOT_STARTED",
+      "activities": [
+        { "id": "g2a1", "title": "Rewrite _load_projects() to read progress.json from GitHub API instead of local Drive", "status": "NOT_STARTED" },
+        { "id": "g2a2", "title": "Add 30-minute cache for project data (GitHub API calls, not real-time)", "status": "NOT_STARTED" },
+        { "id": "g2a3", "title": "Remove or convert session launcher (VS Code open not viable on VPS)", "status": "NOT_STARTED" },
+        { "id": "g2a4", "title": "Move AI news fetcher from Windows Task Scheduler to VPS Task Scheduler", "status": "NOT_STARTED" },
+        { "id": "g2a5", "title": "Deploy console on VPS, confirm accessible at console.scaled-agile-training.com", "status": "NOT_STARTED" },
+        { "id": "g2a6", "title": "Update morning-brief skill to POST to external URL not localhost", "status": "NOT_STARTED" }
+      ]
+    },
+    {
+      "id": "g3",
+      "title": "Migrate MT5 × 3 + Telegram Signal Trader",
+      "status": "NOT_STARTED",
+      "activities": [
+        { "id": "g3a1", "title": "Install MT5 Pepperstone (Private Club account 62126186) on VPS + authenticate", "status": "NOT_STARTED" },
+        { "id": "g3a2", "title": "Install MT5 Easy Forex (account 62126211) on VPS + authenticate", "status": "NOT_STARTED" },
+        { "id": "g3a3", "title": "Install MT5 Gold Snipers Daily (account 62126213) on VPS + authenticate", "status": "NOT_STARTED" },
+        { "id": "g3a4", "title": "Copy Telegram signal trader code to VPS, update paths", "status": "NOT_STARTED" },
+        { "id": "g3a5", "title": "Configure Telegram API credentials on VPS", "status": "NOT_STARTED" },
+        { "id": "g3a6", "title": "Run in parallel with PC for 48h to verify signal matching before cutting over", "status": "NOT_STARTED" },
+        { "id": "g3a7", "title": "Set trader and MT5 to auto-start via Windows Task Scheduler on boot", "status": "NOT_STARTED" }
+      ]
+    },
+    {
+      "id": "g4",
+      "title": "Migrate LifeStoryBook + decommission Linux VPS",
+      "status": "NOT_STARTED",
+      "activities": [
+        { "id": "g4a1", "title": "Back up Linux VPS SQLite database and uploads folder", "status": "NOT_STARTED" },
+        { "id": "g4a2", "title": "Port LifeStoryBook Flask app to Windows (paths, cron → Task Scheduler)", "status": "NOT_STARTED" },
+        { "id": "g4a3", "title": "Deploy on VPS, test all routes including admin and interview flow", "status": "NOT_STARTED" },
+        { "id": "g4a4", "title": "Repoint inchapters.com DNS to VPS tunnel", "status": "NOT_STARTED" },
+        { "id": "g4a5", "title": "Run 48h parallel, then decommission Hetzner Linux VPS (167.233.78.70)", "status": "NOT_STARTED" }
+      ]
+    }
+  ],
+  "agreed_next_steps": [
+    "WHEN READY: Start with g1 — provision VPS and confirm instance size. CX32 (8GB RAM) recommended if running MT5 × 3 simultaneously.",
+    "Pre-work: confirm broker VPS policies with Pepperstone and Easy Forex support before provisioning.",
+    "DEFERRED (post Spain move): evaluate g5 code-server once stable on primary machine(s)."
+  ],
+  "deferred_ideas": [
+    {
+      "id": "g5",
+      "title": "code-server: browser-based VS Code dev environment on Linux VPS",
+      "status": "DEFERRED — evaluate post Spain move",
+      "logged": "2026-06-25",
+      "rationale": "Eliminates cross-machine dev setup entirely. Any browser = full VS Code + Claude Code. Costs ~4.49/mo Hetzner CX21. Requires migrating project files from Google Drive to GitHub (mostly done via john-projects-state). MT5 terminals stay local regardless — Windows only. Deferred because Spain move adds too much change simultaneously; state-sync system built Day 8 solves immediate pain.",
+      "prerequisites": [
+        "Complete Spain move and settle on primary machine setup",
+        "Finish GitHub migration of project files (john-projects-state is step 1)",
+        "Confirm internet reliability at Spain property"
+      ],
+      "activities": [
+        { "id": "g5a1", "title": "Provision Hetzner CX21 Linux VPS (~4.49/mo)", "status": "NOT_STARTED" },
+        { "id": "g5a2", "title": "Install code-server + Cloudflare Tunnel (reuse existing account)", "status": "NOT_STARTED" },
+        { "id": "g5a3", "title": "Install Claude Code, Node, Python, git on VPS", "status": "NOT_STARTED" },
+        { "id": "g5a4", "title": "Clone all GitHub repos to VPS, set up .env files", "status": "NOT_STARTED" },
+        { "id": "g5a5", "title": "Test from tablet and secondary machine — confirm full workflow", "status": "NOT_STARTED" }
+      ]
+    }
+  ]
+}
